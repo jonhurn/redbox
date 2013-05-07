@@ -2,10 +2,14 @@
 <style type="text/css">
 fieldset p textarea { display:block; width: 98%; }
 </style>
+## Modify by Sue Li 18/04/2013
 <div class="grid_16 widget-form"
-    data-form-fields="title,description,redbox:formVersion,redbox:newForm,redbox:submissionProcess.redbox:submitted,workflow_source,redbox:submissionProcess.dc:date,redbox:submissionProcess.dc:description,redbox:submissionProcess.locrel:prc.foaf:Person.foaf:name,redbox:submissionProcess.locrel:prc.foaf:Person.foaf:mbox,redbox:submissionProcess.locrel:prc.foaf:Person.foaf:phone,redbox:submissionProcess.dc:title,redbox:submissionProcess.skos:note"
+    data-form-fields="redbox:submissionProcess.dc:title,redbox:submissionProcess.dc:description,redbox:formVersion,redbox:newForm,redbox:submissionProcess.redbox:submitted,workflow_source,redbox:submissionProcess.dc:description,redbox:submissionProcess.locrel:prc.foaf:Person.foaf:name,redbox:submissionProcess.locrel:prc.foaf:Person.foaf:mbox,redbox:submissionProcess.locrel:prc.foaf:Person.foaf:creator,
+    redbox:submissionProcess.dc:daterange,redbox:submissionProcess.dc:subject.vivo:keyword,redbox:submissionProcess.foaf:fundedBy.vivo:Peoject,redbox:submissionProcess.dc:related,redbox:submissionProcess.locrel:prc.foaf:Person.foaf:creator,
+    redbox:submissionProcess.dc:datalocation,redbox:submissionProcess.dc:comment"
     data-form-fields-readonly="metaList"
     data-submit-func="srSubmitFunc">
+## End of Modify by Sue Li 18/04/2013
     <input type="hidden" id="redbox:formVersion" value="$systemConfig.getString("Unknown", "redbox.version.string")" />
     <input type="hidden" id="redbox:newForm" value="true" />
     <input type="hidden" name="redbox:submissionProcess.redbox:submitted" value="true" />
@@ -17,33 +21,61 @@ fieldset p textarea { display:block; width: 98%; }
     <input type="hidden" name="metaList" value="[]" />
     <p>Please review the submission request and action as appropriate.</p>
     <fieldset>
-        <p>
+        <!--<p>
             <label for="redbox:submissionProcess.dc:date">Date Submitted</label>
             <input id="redbox:submissionProcess.dc:date" type="text" size="40" value="$!self.getRequestData('redbox:submissionProcess.dc:date')" readonly="readonly" />
-        </p>
-        #if("$!self.getRequestData('redbox:submissionProcess.dc:title')"!="")
-        <input type="hidden" name="title" value="$!self.getRequestData('redbox:submissionProcess.dc:title')">
+        </p>-->
+        ###if("$!self.getRequestData('redbox:submissionProcess.dc:title')"!="")
+        <!--<input type="hidden" name="title" value="$!self.getRequestData('redbox:submissionProcess.dc:title')">-->
         <p>
-            <label for="redbox:submissionProcess.dc:title">Title</label>
-            <textarea id="redbox:submissionProcess.dc:title" cols="40" rows="2" readonly="readonly">$!self.getRequestData("redbox:submissionProcess.dc:title")</textarea>
+            <label for="redbox:submissionProcess.dc:title">Title of dataset or data collection </label><br>
+            <!--<textarea id="redbox:submissionProcess.dc:title" cols="40" rows="2" readonly="readonly">$!self.getRequestData("redbox:submissionProcess.dc:title")</textarea>-->
+            <input id="redbox:submissionProcess.dc:title" type="text" size="40" value="$!self.getRequestData('redbox:submissionProcess.dc:title')" readonly="readonly"/>       
         </p>
-        #end
+        ###end
         <p>
-            <label for="redbox:submissionProcess.dc:description">Description</label>
+            <label for="redbox:submissionProcess.dc:description">Description of dataset or data collection (eg. characteristics, features, scope, details of entities studied, methodologies used)</label>
             <textarea id="redbox:submissionProcess.dc:description" cols="40" rows="10" readonly="readonly">$!self.getRequestData("redbox:submissionProcess.dc:description")</textarea>
         </p>
         <p>
-            <label for="redbox:submissionProcess.locrel:prc.foaf:Person.foaf:name">Contact Name</label>
+            <label for="redbox:submissionProcess.locrel:prc.foaf:Person.foaf:name">Primary contact for the data</label>
             <input id="redbox:submissionProcess.locrel:prc.foaf:Person.foaf:name" type="text" size="40" value="$!self.getRequestData('redbox:submissionProcess.locrel:prc.foaf:Person.foaf:name')" readonly="readonly" />
         </p>
         <p>
-            <label for="redbox:submissionProcess.locrel:prc.foaf:Person.foaf:phone">Phone Number</label>
-            <input id="redbox:submissionProcess.locrel:prc.foaf:Person.foaf:phone" type="text" size="40" value="$!self.getRequestData('redbox:submissionProcess.locrel:prc.foaf:Person.foaf:phone')" readonly="readonly" />
-        </p>
-        <p>
-            <label for="redbox:submissionProcess.locrel:prc.foaf:Person.foaf:mbox">Email Address</label>
+            <label for="redbox:submissionProcess.locrel:prc.foaf:Person.foaf:mbox">Primary contact email address</label>
             <input id="redbox:submissionProcess.locrel:prc.foaf:Person.foaf:mbox" type="text" size="40" value="$!self.getRequestData('redbox:submissionProcess.locrel:prc.foaf:Person.foaf:mbox')" readonly="readonly" />
         </p>
+        <p>
+            <label for="redbox:submissionProcess.locrel:prc.foaf:Person.foaf:creator">Name(s) of person(s) who created this dataset or data collection</label>
+            <textarea id="redbox:submissionProcess.locrel:prc.foaf:Person.foaf:creator" cols="40" rows="5" readonly="readonly">$!self.getRequestData("redbox:submissionProcess.locrel:prc.foaf:Person.foaf:creator")</textarea>
+        </p>
+
+## Modify by Sue Li 19/04/2013
+        <p>
+            <label for="redbox:submissionProcess.foaf:fundedBy.vivo:Peoject">Grant title and/or Grant number related to this dataset or data collection</label>
+            <input id="redbox:submissionProcess.foaf:fundedBy.vivo:Peoject" type="text" size="40" value="$!self.getRequestData('redbox:submissionProcess.foaf:fundedBy.vivo:Peoject')" readonly="readonly" />
+        </p>
+        <p>
+            <label for="redbox:submissionProcess.dc:daterange">Date range relevant to this dataset or data collection, if applicable.(eg. 2010-2013, Jan-Mar 2013)</label>
+            <input id="redbox:submissionProcess.dc:daterange" type="text" size="40" value="$!self.getRequestData('redbox:submissionProcess.dc:daterange')" readonly="readonly" />
+        </p>
+        <p>
+            <label for="redbox:submissionProcess.dc:subject.vivo:keyword">Free-text keywords</label>
+            <input id="redbox:submissionProcess.dc:subject.vivo:keyword" type="text" size="40" value="$!self.getRequestData('redbox:submissionProcess.dc:subject.vivo:keyword')" readonly="readonly" />
+        </p>
+        <p>
+            <label for="redbox:submissionProcess.dc:datalocation">Geospatial location or place name relevant to where this dataset or data collection was collected (eg. Hobart, Mt Olga region or map coordinates)</label>
+            <textarea id="redbox:submissionProcess.dc:datalocation" cols="40" rows="5" readonly="readonly">$!self.getRequestData("redbox:submissionProcess.dc:datalocation")</textarea>
+        </p>
+        <p>
+            <label for="redbox:submissionProcess.dc:related">Related information such as publications or websites</label>
+            <textarea id="redbox:submissionProcess.dc:related" cols="40" rows="5" readonly="readonly">$!self.getRequestData("redbox:submissionProcess.dc:related")</textarea>
+        </p>
+        <p>
+            <label for="redbox:submissionProcess.dc:comment">Any comments for Library staff. This information will not be displayed to the public</label>
+            <textarea id="redbox:submissionProcess.dc:comment" cols="40" rows="5" readonly="readonly">$!self.getRequestData("redbox:submissionProcess.dc:comment")</textarea>
+        </p>
+##End of Modify by Sue Li 19/04/2013 
         #if("$!self.getRequestData('redbox:submissionProcess.skos:note')"!="")
         <p>
             <label for="redbox:submissionProcess.skos:note">Notes</label>

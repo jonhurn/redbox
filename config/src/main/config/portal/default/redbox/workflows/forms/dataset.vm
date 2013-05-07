@@ -21,7 +21,6 @@
     </label>
 #end
 
-
 #macro(mintSelectField $id $labelId $sourceUrl $idKey $labelKey $listKey $defaultValue)
     <span class="data-source-drop-down"
           data-json-source-url="$sourceUrl"
@@ -252,20 +251,20 @@
         dc:biblioGraphicCitation.dc:hasPart.skos:scopeNote,
         ## submission request
         redbox:submissionProcess.redbox:submitted,
-        redbox:submissionProcess.dc:date,
         redbox:submissionProcess.dc:description,
         redbox:submissionProcess.locrel:prc.foaf:Person.foaf:name,
-        redbox:submissionProcess.locrel:prc.foaf:Person.foaf:phone,
+        redbox:submissionProcess.locrel:prc.foaf:Person.foaf:creator,
         redbox:submissionProcess.locrel:prc.foaf:Person.foaf:mbox,
         redbox:submissionProcess.dc:title,
-        redbox:submissionProcess.skos:note,
-        redbox:embargo.redbox:isEmbargoed,
-        redbox:embargo.dc:date,
-        redbox:embargo.skos:note,
-        dc:relation.redbox:TechnicalMetadata.0.dc:identifier,
-        dc:relation.redbox:TechnicalMetadata.0.dc:title,
-        dc:relation.redbox:TechnicalMetadata.0.dc:type,
-        dc:relation.redbox:TechnicalMetadata.0.dc:conformsTo
+## Modify by Sue Li 18/04/2013
+        redbox:submissionProcess.dc:daterange,
+        redbox:submissionProcess.dc:subject.vivo:keyword,
+        redbox:submissionProcess.foaf:fundedBy.vivo:Peoject,
+        redbox:submissionProcess.dc:related,
+        redbox:submissionProcess.dc:datalocation,
+        redbox:submissionProcess.dc:comment,
+## End of Modify by Sue Li 18/04/2013
+        redbox:submissionProcess.skos:note
     " />
     <input type="hidden" class="form-fields-readonly" value="xmlns:dc, xmlns:foaf, xmlns:anzsrc, metaList" />
     <input type="hidden" id="metaList" value="[]" />
@@ -360,9 +359,6 @@ $(function(){
 
     $(".form-fields-save-close").click(function() {
         saveAndClose = true;
-		$(".save-note").each(function(idx){ 
-			this.click();
-		});
         $(".form-fields-save").click();
     });
 

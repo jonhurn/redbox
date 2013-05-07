@@ -83,17 +83,23 @@ class InboxData:
     def __update(self):
         print "Updating '%s'" % self.__oid
         result = '{"ok":"Updated OK"}'
-
+# Modify by Sue Li 19/04/2013
         if self.__formData.get("acceptOnly", "false") == "false":
             requestFields = ["redbox:submissionProcess.redbox:submitted",
                              "workflow_source",
-                             "redbox:submissionProcess.dc:date",
                              "redbox:submissionProcess.dc:description",
                              "redbox:submissionProcess.locrel:prc.foaf:Person.foaf:name",
-                             "redbox:submissionProcess.locrel:prc.foaf:Person.foaf:phone",
+                             "redbox:submissionProcess.locrel:prc.foaf:Person.foaf:creator",
                              "redbox:submissionProcess.locrel:prc.foaf:Person.foaf:mbox",
                              "redbox:submissionProcess.dc:title",
-                             "redbox:submissionProcess.skos:note"]
+                             "redbox:submissionProcess.skos:note",
+                             "redbox:submissionProcess.dc:daterange",
+                             "redbox:submissionProcess.dc:subject.vivo:keyword",                     
+                             "redbox:submissionProcess.foaf:fundedBy.vivo:Peoject",
+                             "redbox:submissionProcess.dc:related",                          
+                             "redbox:submissionProcess.dc:datalocation",                             
+                             "redbox:submissionProcess.dc:comment"]
+# End of Modify by Sue Li 19/04/2013
             # update from form data
             data = self.__requestData.getJsonObject()
             formFields = self.__formData.getFormFields()
